@@ -1,0 +1,19 @@
+{
+  "name": "lab-assistant",
+  "version": "1.0.0",
+  "description": "deprecates real life lab assistants",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "lab",
+    "assistant"
+  ],
+  "author": "dgnes",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "alexa-sdk": "^1.0.6"
+  }
+}
