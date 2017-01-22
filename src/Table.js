@@ -31,14 +31,33 @@ var myTable = new Table(
 
 var request = require('request');
 
+// request({
+//     host: 'http://ec2-54-153-116-5.us-west-1.compute.amazonaws.com',
+//     port: 5000,
+//     path: "/test",
+//     method: "POST",
+//     json: true, 
+//     body: myTable.toJSON()
+// }, function (error, response, body) {
+//         console.log(response);
+// });
+
 request({
-    url: 'http://127.0.0.1:5000/test',
+    url: 'http://ec2-54-153-116-5.us-west-1.compute.amazonaws.com:5000/test',
     method: "POST",
     json: true, 
     body: myTable.toJSON()
 }, function (error, response, body) {
         console.log(response);
 });
+// request({
+//     url: 'http://127.0.0.1:5000/test',
+//     method: "POST",
+//     json: true, 
+//     body: myTable.toJSON()
+// }, function (error, response, body) {
+//         console.log(response);
+// });
 
 
 // var table = new Table(

@@ -32,7 +32,9 @@ var myTable = new Table(
 var request = require('request');
 
 request({
-    url: 'http://127.0.0.1:5000/test',
+    host: 'http://ec2-54-153-116-5.us-west-1.compute.amazonaws.com',
+    port: 5000,
+    path: "/test"
     method: "POST",
     json: true, 
     body: {a: "dfasl;dfj", b: "sadfkjasdjfsadf" }
