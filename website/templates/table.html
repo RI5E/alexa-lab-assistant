@@ -1,0 +1,42 @@
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+	<div class="jumbotron">
+		<h1> Table Output</h1>
+		<table class = 'table'>
+			<thead>
+				{% for item in table_dict['col_names'] %}
+					<th> {{item}}</th>
+				{% endfor %}
+			</thead>
+			<tbody>
+				{% for row in table_dict['data'] %}
+					<tr>
+						{% for cell in row %}
+							{% if loop.index == 0 %}
+								<th scope = 'row'> {{ cell }} </th>
+							{% else %}
+								<td> {{ cell }}</td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				{% endfor %}
+				<!-- <tr>
+					<th scope = 'row'> 1 </th>
+					<td> Brown </td>
+					<td> Delightful </td>
+				</tr> -->
+			</tbody>
+		</table>
+	  
+	</div>
+</div>
+</body>
+</html>
