@@ -1,0 +1,79 @@
+{
+	"intents": [ 
+		{
+			"intent": "ListLabs"
+		},
+		{
+			"intent": "SelectLab",
+			"slots": [
+				{
+					"name": "LabName",
+					"type": "AMAZON.LITERAL"
+				}
+			]
+		},
+		{
+			"intent": "StopLab"
+		},
+		{
+			"intent": "ListMaterials"
+		},
+		{
+			"intent": "GetSynopsis"
+		},
+		{
+			"intent": "NextStep"
+		},
+		{
+			"intent": "PauseStep"
+		},
+		{
+			"intent": "SelectStep",
+			"slots": [
+				{
+					"name": "StepNumber",
+					"type": "AMAZON.NUMBER"
+				}
+			]
+		},
+		{
+			"intent": "SetTimer",
+			"slots": [
+				{
+					"name": "Countdown",
+					"type": "AMAZON.DURATION"
+				}
+			]
+		},
+		{
+			"intent": "CreateTable",
+		},
+		{
+			"intent": "SetNumberColumn",
+			"slots": [
+				{
+					"name": "Columns",
+					"type:" "AMAZON.NUMBER"
+				}
+			]
+		},
+				{
+			"intent": "SetColumnNames",
+			"slots": [
+				{
+					"name": "Columns",
+					"type:" "AMAZON.NUMBER"
+				}
+			]
+		},
+		{
+	      "intent": "AMAZON.HelpIntent"
+	    },
+	    {
+	      "intent": "AMAZON.StopIntent"
+	    },
+	    {
+	      "intent": "AMAZON.CancelIntent"
+	    }
+	]
+}
