@@ -19,11 +19,6 @@ def test():
 def instructors(name):
     return render_template("instructors.html", name = name)
 
-
-@app.route("/test/<string:name>")
-def test(name):
-    return render_template("test.html", name=name)
-
 @app.route("/create")
 def create():
     return render_template("create.html")
