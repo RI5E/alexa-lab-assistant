@@ -22,6 +22,25 @@ function tableToJSON() {
 	return jsonObj;
 }
 
+var myTable = new Table(
+    num_entries= 5,
+    num_cols = 3,
+    col_names = ['trial', 'color', 'feeling'],
+    data = [[1,'brown','refreshing'],[2,'purple','gnarly'], [3, 'pink', 'explosive'], [4, 'white', 'exquisite'], [5, 'blue', 'sad']]
+);
+
+var request = require('request');
+
+request({
+    url: 'http://127.0.0.1:5000/test',
+    method: "POST",
+    json: true, 
+    body: {a: "dfasl;dfj", b: "sadfkjasdjfsadf" }
+}, function (error, response, body) {
+        console.log(response);
+});
+
+
 // var table = new Table(
 //     num_entries= 5,
 //     num_cols = 3,
