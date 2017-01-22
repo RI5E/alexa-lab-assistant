@@ -9,6 +9,11 @@ def index():
 def instructors():
     return render_template("instructors.html")
 
+
+@app.route("/test/<string:name>")
+def test(name):
+    return render_template("test.html", name=name)
+
 @app.route("/create")
 def create():
     return render_template("create.html")
