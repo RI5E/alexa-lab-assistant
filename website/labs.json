@@ -1,0 +1,9 @@
+{
+    "labs" : {
+        "poop lab": {
+            "summary" : "This lab is a poopy lab.",
+            "materials": ["Trash Food", "Poop", "Mouth"],
+            "directions": ["Prepare the poop.", "Eat the poop.", "Observe Sadness."]
+        }
+    }
+}
