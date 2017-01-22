@@ -18,14 +18,20 @@
 		{
 			"intent": "ListMaterials"
 		},
+        {
+          	"intent": "NextMaterial"
+        },
 		{
 			"intent": "GetSynopsis"
 		},
+      	{
+          	"intent": "GetDirections"
+        },
 		{
 			"intent": "NextStep"
 		},
 		{
-			"intent": "PauseStep"
+			"intent": "RepeatStep"
 		},
 		{
 			"intent": "SelectStep",
@@ -49,23 +55,49 @@
 			"intent": "CreateTable"
 		},
 		{
-			"intent": "SetNumberColumn",
+			"intent": "SetDimensions",
 			"slots": [
 				{
 					"name": "Columns",
 					"type": "AMAZON.NUMBER"
-				}
+				},
+              	{
+                  	"name": "Rows",
+                  	"type": "AMAZON.NUMBER"
+                }
 			]
 		},
 				{
 			"intent": "SetColumnNames",
 			"slots": [
 				{
-					"name": "ColumnNames",
+					"name": "ColName",
 					"type": "AMAZON.LITERAL"
 				}
 			]
 		},
+      	{
+          	"intent": "SetRowNames",
+          	"slots": [
+              	{	"name": "RowName",
+              		"type": "AMAZON.LITERAL"
+                }
+            ]
+        },
+      	{
+          	"intent": "RecordData",
+          	"slots": [
+              {	"name": "ColName",
+               	"type": "AMAZON.LITERAL"
+              },
+              {	"name": "RowName",
+               	"type": "AMAZON.LITERAL"
+              },
+              {	"name": "Data",
+               	"type": "AMAZON.NUMBER"
+              }
+            ]
+        },
 		{
 	      "intent": "AMAZON.HelpIntent"
 	    },
