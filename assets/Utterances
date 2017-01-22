@@ -1,4 +1,4 @@
-ListLab list labs
+ListLabs list labs
 SelectLab start lab {titration lab|LabName}
 SelectLab open lab {titration lab|LabName}
 SelectLab start lab {poop lab|LabName}
@@ -26,18 +26,63 @@ ListMaterials can you list the materials
 ListMaterials please list the materials
 ListMaterials can you list out the materials
 ListMaterials please list out the materials
+NextMaterial next material
+NextMaterial next item
+NextMaterial next one
 GetSynopsis say synopsis
 GetSynopsis say summary
 GetSynopsis summary
 GetSynopsis synopsis
 GetSynopsis overview
+GetDirections give me the directions
+GetDirections get directions
+GetDirections read me the instructions
+GetDirections read me directions
+GetDirections read me the directions
+GetDirections get instructions
 NextStep next step
 NextStep next
-PauseStep pause step
-PauseStep pause
+RepeatStep repeat step
+RepeatStep repeat
+RepeatStep could you repeat the step
 SetTimer timer for {Countdown}
 SetTimer please set a timer for {Countdown}
 CreateTable create new table
 CreateTable create table
-SetNumberColumn {Columns}
-SetColumnNames {Columns}
+SetDimensions {Columns} columns {Rows} rows
+SetDimensions {Columns} {Rows}
+SetDimensions {Columns} by {Rows}
+SetDimensions {Columns} columns by {Rows} rows
+SetDimensions {Columns} columns and {Rows} rows
+SetColumnNames {temperature|ColName}
+SetColumnNames {pH|ColName}
+SetColumnNames {mass|ColName}
+SetColumnNames {moles|ColName}
+SetColumnNames {volume|ColName}
+SetColumnNames {height|ColName}
+SetColumnNames {time|ColName}
+SetColumnNames {seconds|ColName}
+SetColumnNames column name {temperature|ColName}
+SetColumnNames column name {pH|ColName}
+SetColumnNames column name {mass|ColName}
+SetColumnNames column name {moles|ColName}
+SetColumnNames column name {volume|ColName}
+SetColumnNames column name {height|ColName}
+SetColumnNames column name {time|ColName}
+SetColumnNames column name {seconds|ColName}
+
+SetRowNames row name {temperature|RowName}
+SetRowNames row name {pH|RowName}
+SetRowNames row name {mass|RowName}
+SetRowNames row name {moles|RowName}
+SetRowNames row name {volume|RowName}
+SetRowNames row name {height|RowName}
+SetRowNames row name {time|RowName}
+SetRowNames row name {seconds|RowName}
+
+RecordData data {volume|ColName} {height|RowName} {Data}
+RecordData data for {height|ColName} {volume|RowName} {Data}
+RecordData data {temperature|ColName} {seconds|RowName} is {Data}
+RecordData data for {time|ColName} {temperature|RowName} is {Data}
+RecordData record data {seconds|ColName} {time|RowName} as {Data}
+RecordData record data for {moles|ColName} {moles|RowName} as {Data}

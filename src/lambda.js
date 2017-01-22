@@ -17,6 +17,10 @@ var tables = {"DIRECTIONS" : [
         "Goggles"]
 };
 
+var dataTable = [];
+var rowLabels = [];
+var colLabels = [];
+
 var languageString = {
     "en-US": {
         "translation": {
@@ -36,9 +40,19 @@ var languageString = {
                                 "No rush. Let me know when you want the next item. ", "Tell me when you want your next material", "Got it? Request next item when you want."],
             "LAST_MATERIAL": "Those are all of the materials.",
             "START_SYNOPSIS": ["Once upon a time. Nevermind. ", "Summarizing now. ", "Okay. Here goes. ", "Here is your synopsis. ", "Listen up. ", "Prepare to be enlightened. "],
-            "START_DIRECTIONS": ["Okay. Let's begin. ", "Sure. I\'ll give you the first step. ", "Here is the first step", "Here we go. ", "Lab begins now. "],
+            "START_DIRECTIONS": ["Okay. Let's begin. ", "Sure. I\'ll give you the first step. ", "Here is the first step. ", "Here we go. ", "Lab begins now. "],
             "TAIL_DIRECTIONS": [" Once ready, request the next step or ask for repeat.", " The next step is available for you. If you need instructions again, request a repeat.", " If you need that repeated, tell me. If not, request the next step when ready."],
-            
+            "REPEAT": [" Okay. Here it is again. ", " Listen carefully. ", " Okay, but don't forget this time. ", " Here you go. ", " Here. Again just for you. "],
+            "CREATE TABLE": ["Ok let's make a table. "],
+            "COL_BEG": [" To start labeling the columns, say the words: column name. and then the name that you want.", " To begin column labeling, declare the words: column name, and then your desired name",
+                        " Say the words: column name. Followed by the name you want for your column to begin the lableling."],
+            "COL_END": [". The columns are all labeled.", ". We are done with the columns,", ". That's the last of the columns.", ". I've got all of the columns now."],
+            "COL_ROW": [" To move onto rows, give us your first row label preceded by the words: row name.",
+                        " Rows can be labeled by saying the words: row name. Followed by your row name.",
+                        " Onto the rows. When ready, say: row name, followed by your desired result."],
+            "ROW_END": [". We have labeled all of the rows.", " . The rows are done.", ". That's the last of the rows. ", ". All the rows are labled now."],
+            "RECORD": [" Value Recorded.", " Got it.", " Got that down.", " Table updated.", " Data is in."],
+        
             "HELP_MESSAGE": "I will ask you %s multiple choice questions. Respond with the number of the answer. " +
             "For example, say one, two, three, or four. To start a new game at any time, say, start game. ",
             "REPEAT_QUESTION_MESSAGE": "To repeat the last question, say, repeat. ",
@@ -74,6 +88,11 @@ var step = 0;
 var start = true;
 var startDir = true;
 var directionStep = 0;
+var numCols = 0;
+var numRows = 0;
+var indCol = 0;
+var indRow = 0;
+
 var handlers = {
     'ListMaterials': function() {
         this.emit('GetMaterials');
@@ -133,7 +152,74 @@ var handlers = {
         var speechOutput = 'That is the last of the steps';
         this.emit(':tell', speechOutput);
     },
-    
+    'RepeatStep': function() {
+        const stepArr = this.t('DIRECTIONS');
+        var r = Math.floor(Math.random() * this.t('REPEAT').length);
+        var tl = Math.floor(Math.random() * this.t('TAIL_DIRECTIONS').length);
+        var speechOutput = this.t('REPEAT')[r] + stepArr[directionStep] + this.t('TAIL_DIRECTIONS')[tl];
+        this.emit(':tell', speechOutput);
+        
+    },
+    'CreateTable': function() {
+        var x = Math.floor(Math.random() * 9)+1;
+        var y = Math.floor(Math.random() * 9)+1;
+        var speechOutput = "Give us the dimensions of your table. For example: " + x + " by " + y + ". Or "+ x + " columns by " + y +" rows.";
+        this.emit(':tell', speechOutput);
+        
+    },
+    'SetDimensions': function() {
+        numCols = parseInt(this.event.request.intent.slots.Columns.value);
+        numRows = parseInt(this.event.request.intent.slots.Rows.value);
+        var index;
+        for (index = 0; index < numCols*numRows; index ++){
+            dataTable.push(0);
+        }
+        var speechOutput = "We have " + numCols + " columns and " + numRows + " rows.";
+        var x = Math.floor(Math.random() * this.t('COL_BEG').length);
+        speechOutput += this.t('COL_BEG')[x];
+        this.emit(':tell', speechOutput);
+    },
+    'SetColumnNames': function() {
+        if (indCol == numCols-1) {
+            var name1 = this.event.request.intent.slots.ColName.value;
+            colLabels.push(name1);
+            var x = Math.floor(Math.random() * this.t('COL_END').length);
+            var y = Math.floor(Math.random() * this.t('COL_ROW').length);
+            this.emit(":tell", colLabels + this.t('COL_END')[x] + this.t('COL_ROW')[y]);
+        } else {
+            var name = this.event.request.intent.slots.ColName.value;
+            colLabels.push(name);
+            indCol += 1;
+            this.emit(':tell', colLabels + ". These are the labels so far. Specify next column following the words: column name");
+        }
+    },
+    'SetRowNames': function() {
+        if (indRow == numRows-1) {
+            var name1 = this.event.request.intent.slots.RowName.value;
+            rowLabels.push(name1);
+            var x = Math.floor(Math.random() * this.t('ROW_END').length);
+            this.emit(":tell", rowLabels + this.t('ROW_END')[x]);
+        } else {
+            var name = this.event.request.intent.slots.RowName.value;
+            rowLabels.push(name);
+            indRow += 1;
+            this.emit(':tell', rowLabels + ". These are the labels so far. Specify next row following the words: row name");
+        }
+    },
+    'RecordData': function() {
+        var col = this.event.request.intent.slots.ColName.value;
+        var row = this.event.request.intent.slots.RowName.value;
+        var data = this.event.request.intent.slots.Data.value;
+        
+        var coli = colLabels.indexOf(col);
+        var rowi = rowLabels.indexOf(row);
+        var index = rowi*numCols;
+        index += coli;
+        dataTable[index] = data;
+        var x = Math.floor(Math.random() * this.t('RECORD').length);
+        this.emit(':tell', this.t('RECORD')[x]+dataTable);
+        
+    },
     'AMAZON.HelpIntent': function () {
         const speechOutput = this.t('HELP_MESSAGE');
         const reprompt = this.t('HELP_MESSAGE');
