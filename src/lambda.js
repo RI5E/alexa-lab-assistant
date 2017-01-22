@@ -2,11 +2,11 @@
 var APP_ID = undefined;
 
 var tables = {"DIRECTIONS" : [
-        "Step 0",
-        "Step 1",
-        "Step 2",
-        "Step 3",
-        "Step 4"
+        "Step 0.",
+        "Step 1.",
+        "Step 2.",
+        "Step 3.",
+        "Step 4."
     ],
     "MATERIALS" : [
         "Scale",
@@ -36,6 +36,8 @@ var languageString = {
                                 "No rush. Let me know when you want the next item. ", "Tell me when you want your next material", "Got it? Request next item when you want."],
             "LAST_MATERIAL": "Those are all of the materials.",
             "START_SYNOPSIS": ["Once upon a time. Nevermind. ", "Summarizing now. ", "Okay. Here goes. ", "Here is your synopsis. ", "Listen up. ", "Prepare to be enlightened. "],
+            "START_DIRECTIONS": ["Okay. Let's begin. ", "Sure. I\'ll give you the first step. ", "Here is the first step", "Here we go. ", "Lab begins now. "],
+            "TAIL_DIRECTIONS": [" Once ready, request the next step or ask for repeat.", " The next step is available for you. If you need instructions again, request a repeat.", " If you need that repeated, tell me. If not, request the next step when ready."],
             
             "HELP_MESSAGE": "I will ask you %s multiple choice questions. Respond with the number of the answer. " +
             "For example, say one, two, three, or four. To start a new game at any time, say, start game. ",
@@ -70,6 +72,8 @@ exports.handler = (event, context) => {
 
 var step = 0;
 var start = true;
+var startDir = true;
+var directionStep = 0;
 var handlers = {
     'ListMaterials': function() {
         this.emit('GetMaterials');
@@ -78,7 +82,7 @@ var handlers = {
         const matArr = this.t('MATERIALS');
         var indSt = Math.floor(Math.random() * this.t('MATERIALS_MESSAGE').length);
         var speechOutput = start ? this.t('MATERIALS_MESSAGE')[indSt] + (matArr[step] + ". "): (matArr[step] + ". ");
-        var last = (step == matArr.length-1)
+        var last = (step == matArr.length-1);
         var indMat = Math.floor(Math.random() * this.t('NEXT_MATERIAL').length);
         speechOutput = last ? speechOutput + this.t('LAST_MATERIAL') : speechOutput + this.t('NEXT_MATERIAL')[indMat];
         this.emit(':tell', speechOutput);
@@ -103,6 +107,33 @@ var handlers = {
         speechOutput = this.t('START_SYNOPSIS')[indSt] + speechOutput;
         this.emit(':tell', speechOutput);
     },
+    'GetDirections': function() {
+        this.emit('GetDir');
+    },
+    'GetDir': function() {
+        const stepArr = this.t('DIRECTIONS');
+        var s = Math.floor(Math.random() * this.t('START_DIRECTIONS').length);
+        var tl = Math.floor(Math.random() * this.t('TAIL_DIRECTIONS').length);
+        var last = (directionStep == stepArr.length);
+        var speechOutput = startDir ? this.t('START_DIRECTIONS')[s] + stepArr[directionStep] : stepArr[directionStep];
+        speechOutput = last ? speechOutput + " That was the last of the directions." : speechOutput + this.t('TAIL_DIRECTIONS')[tl];
+        this.emit(':tell', speechOutput);
+    },
+    'NextStep': function() {
+        startDir = false;
+        const len = this.t('DIRECTIONS').length -1;
+        if (directionStep == len){
+            this.emit('LastDirection');
+        } else {
+            directionStep += 1;
+            this.emit('GetDir');
+        }
+    },
+    'LastDirection': function() {
+        var speechOutput = 'That is the last of the steps';
+        this.emit(':tell', speechOutput);
+    },
+    
     'AMAZON.HelpIntent': function () {
         const speechOutput = this.t('HELP_MESSAGE');
         const reprompt = this.t('HELP_MESSAGE');
