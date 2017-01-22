@@ -1,0 +1,43 @@
+ListLab list labs
+SelectLab start lab {titration lab|LabName}
+SelectLab open lab {titration lab|LabName}
+SelectLab start lab {poop lab|LabName}
+SelectLab open lab {poop lab|LabName}
+SelectLab start lab {my stupid fucking lab|LabName}
+SelectLab open lab {my stupid fucking lab|LabName}
+SelectLab start lab {poop|LabName}
+SelectLab open lab {poop|LabName}
+SelectLab start lab {paper|LabName}
+SelectLab open lab {paper|LabName}
+SelectLab start {titration lab|LabName}
+SelectLab open {titration lab|LabName}
+SelectLab start {poop lab|LabName}
+SelectLab open {poop lab|LabName}
+SelectLab start {my stupid fucking lab|LabName}
+SelectLab open {my stupid fucking lab|LabName}
+SelectLab start {poop|LabName}
+SelectLab open {poop|LabName}
+SelectLab start {paper|LabName}
+SelectLab open {paper|LabName}
+ListMaterials list materials
+ListMaterials say materials
+ListMaterials list out the materials
+ListMaterials can you list the materials
+ListMaterials please list the materials
+ListMaterials can you list out the materials
+ListMaterials please list out the materials
+GetSynopsis say synopsis
+GetSynopsis say summary
+GetSynopsis summary
+GetSynopsis synopsis
+GetSynopsis overview
+NextStep next step
+NextStep next
+PauseStep pause step
+PauseStep pause
+SetTimer timer for {Countdown}
+SetTimer please set a timer for {Countdown}
+CreateTable create new table
+CreateTable create table
+SetNumberColumn {Columns}
+SetColumnNames {Columns}

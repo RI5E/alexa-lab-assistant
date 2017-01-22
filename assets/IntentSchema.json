@@ -46,14 +46,14 @@
 			]
 		},
 		{
-			"intent": "CreateTable",
+			"intent": "CreateTable"
 		},
 		{
 			"intent": "SetNumberColumn",
 			"slots": [
 				{
 					"name": "Columns",
-					"type:" "AMAZON.NUMBER"
+					"type": "AMAZON.NUMBER"
 				}
 			]
 		},
@@ -61,8 +61,8 @@
 			"intent": "SetColumnNames",
 			"slots": [
 				{
-					"name": "Columns",
-					"type:" "AMAZON.NUMBER"
+					"name": "ColumnNames",
+					"type": "AMAZON.LITERAL"
 				}
 			]
 		},
