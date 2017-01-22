@@ -27,6 +27,9 @@
       	{
           	"intent": "GetDirections"
         },
+        {
+            "intent": "SaveData"
+        },
 		{
 			"intent": "NextStep"
 		},

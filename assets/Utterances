@@ -1,5 +1,5 @@
-ListLab list labs
-ListLab can you list my labs
+ListLabs list labs
+ListLabs can you list my labs
 SelectLab start lab {titration lab|LabName}
 SelectLab open lab {titration lab|LabName}
 SelectLab let us start on the {titration lab|LabName}
@@ -55,6 +55,7 @@ GetDirections read me the instructions
 GetDirections read me directions
 GetDirections read me the directions
 GetDirections get instructions
+GetDirections begin instructions
 NextStep next step
 NextStep next
 RepeatStep repeat step
@@ -64,6 +65,7 @@ SetTimer timer for {Countdown}
 SetTimer please set a timer for {Countdown}
 CreateTable create new table
 CreateTable create table
+CreateTable I would like to record some data
 SetDimensions {Columns} columns {Rows} rows
 SetDimensions {Columns} {Rows}
 SetDimensions {Columns} by {Rows}
@@ -101,3 +103,5 @@ RecordData data {temperature|ColName} {seconds|RowName} is {Data}
 RecordData data for {time|ColName} {temperature|RowName} is {Data}
 RecordData record data {seconds|ColName} {time|RowName} as {Data}
 RecordData record data for {moles|ColName} {moles|RowName} as {Data}
+
+SaveData save data
