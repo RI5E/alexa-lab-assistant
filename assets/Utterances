@@ -1,18 +1,33 @@
-ListLabs list labs
+ListLab list labs
+ListLab can you list my labs
 SelectLab start lab {titration lab|LabName}
 SelectLab open lab {titration lab|LabName}
+SelectLab let us start on the {titration lab|LabName}
+SelectLab let us start on {titration lab|LabName}
 SelectLab start lab {poop lab|LabName}
 SelectLab open lab {poop lab|LabName}
+SelectLab let us start on the {poop lab|LabName}
+SelectLab let us start on {poop lab|LabName}
 SelectLab start lab {my stupid fucking lab|LabName}
 SelectLab open lab {my stupid fucking lab|LabName}
+SelectLab let us start on the {my stupid fucking lab|LabName}
+SelectLab let us start on {my stupid fucking lab|LabName}
 SelectLab start lab {poop|LabName}
 SelectLab open lab {poop|LabName}
+SelectLab let us start on the {poop|LabName}
+SelectLab let us start on {poop|LabName}
 SelectLab start lab {paper|LabName}
 SelectLab open lab {paper|LabName}
+SelectLab let us start on the {paper|LabName}
+SelectLab let us start on {paper|LabName}
 SelectLab start {titration lab|LabName}
 SelectLab open {titration lab|LabName}
+SelectLab let us start on the {titration lab|LabName}
+SelectLab let us start on {titration lab|LabName}
 SelectLab start {poop lab|LabName}
 SelectLab open {poop lab|LabName}
+SelectLab let us start on the {poop lab|LabName}
+SelectLab let us start on {poop lab|LabName}
 SelectLab start {my stupid fucking lab|LabName}
 SelectLab open {my stupid fucking lab|LabName}
 SelectLab start {poop|LabName}
